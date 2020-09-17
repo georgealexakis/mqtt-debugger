@@ -165,15 +165,23 @@
 		.my-footer {
 			background-color: lightgray !important;
 		}
+
+		nav {
+			margin-bottom: 1rem;
+		}
 	</style>
 </head>
 
 <body>
 	<main role="main" class="flex-shrink-0">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="#">
+				<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
+					class="d-inline-block align-top" alt="">
+				MQTT Debugger - IoT Agent Live State Codes
+			</a>
+		</nav>
 		<div class="container">
-			<div class="row">
-				<h1 class="mt-5">MQTT Debugger - IoT Agent Live State Codes</h1>
-			</div>
 			<div class="row">
 				<div class="col-sm">
 					<form>
@@ -272,9 +280,15 @@
 					</table>
 				</div>
 				<div class="col-sm">
+					<h5>Useful Links</h5>
 					<a class="btn btn-secondary btn-sm"
 						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button">Free
-						MQTT brokers</a>
+						MQTT Brokers</a>
+					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/"
+						role="button">IoT Agent</a>
+					<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
+						role="button">Git Repository</a>
+					<hr>
 					<div class="form-group">
 						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
 							topic</label>
