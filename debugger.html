@@ -20,6 +20,8 @@
 		var host = "broker.hivemq.com"
 		var port = 8000;
 		var ssl = false;
+		var publishTopic = "$1-IoT-Agent-1$";
+		var subscribeTopic = "$2-IoT-Agent-2$";
 		var temp = new Array();
 		var options = {
 			title: 'Real Time Error Codes',
@@ -159,6 +161,10 @@
 		.form-group {
 			margin-bottom: 0.1rem !important;
 		}
+
+		.my-footer {
+			background-color: lightgray !important;
+		}
 	</style>
 </head>
 
@@ -196,7 +202,7 @@
 								Topic</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control form-control-sm" id="subscribeTopic"
-									value="$2-IoT-Agent-2$" placeholder="Subscribe Topic">
+									placeholder="Subscribe Topic">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -204,32 +210,32 @@
 								Topic</label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control form-control-sm" id="publishTopic"
-									value="$1-IoT-Agent-1$" placeholder="Publish Topic">
+									placeholder="Publish Topic">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="console" class="col-sm-4 col-form-label col-form-label-sm">Status</label>
 							<div class="col-sm-8">
-								<input type="text" readonly class="form-control-plaintext form-control-sm" id="console"
-									placeholder="waiting...">
+								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
+									id="console" placeholder="waiting..." rows="3"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Received Error</label>
 							<div class="col-sm-8">
-								<input type="text" readonly class="form-control-plaintext form-control-sm" id="values"
-									placeholder="waiting...">
+								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
+									id="values" placeholder="waiting..." rows="3"></textarea>
 							</div>
 						</div>
-						<div class="btn-group btn-group-sm" role="group" aria-label="buttons">
-							<button type="button" class="btn btn-secondary" onclick="MQTTconnect()">Connect to
-								Broker</button>
-							<button type="button" class="btn btn-secondary" onclick="reload()">Reload
-								Connection</button>
-						</div>
+						<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect to
+							Broker</button>
+						<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
+							Connection</button>
 						<script>
 							document.getElementById("hostInput").value = host;
 							document.getElementById("portInput").value = port;
+							document.getElementById("subscribeTopic").value = subscribeTopic;
+							document.getElementById("publishTopic").value = publishTopic;
 						</script>
 					</form>
 				</div>
@@ -266,15 +272,17 @@
 					</table>
 				</div>
 				<div class="col-sm">
+					<a class="btn btn-secondary btn-sm"
+						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button">Free
+						MQTT brokers</a>
 					<div class="form-group">
-						<label for="message">Send message to publish topic</label>
-						<input type="text" class="form-control" id="message" placeholder="Message">
+						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
+							topic</label>
+						<input type="text" class="form-control form-control-sm" id="message" placeholder="Message">
 					</div>
-					<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-						<button type="button" class="btn btn-secondary" onclick="publishMessage()">Send
-							Message</button>
-						<button type="button" class="btn btn-secondary" onclick="refresh()">Refresh Data</button>
-					</div>
+					<button type="button" class="btn btn-secondary btn-sm" onclick="publishMessage()">Send
+						Message</button>
+					<button type="button" class="btn btn-secondary btn-sm" onclick="refresh()">Refresh Data</button>
 				</div>
 			</div>
 			<div class="row">
@@ -284,7 +292,7 @@
 			</div>
 		</div>
 	</main>
-	<footer class="footer mt-auto py-3" style="background-color: lightgray;">
+	<footer class="footer mt-auto py-3 my-footer">
 		<div class="container">
 			<span class="text-muted">MQTT Debugger - IoT Agent Live State Codes</span>
 		</div>
