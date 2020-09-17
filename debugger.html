@@ -169,6 +169,10 @@
 		nav {
 			margin-bottom: 1rem;
 		}
+
+		.form-check-input {
+			margin-top: 0 !important;
+		}
 	</style>
 </head>
 
@@ -193,16 +197,19 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="portInput" class="col-sm-2 col-form-label col-form-label-sm">Port</label>
-							<div class="col-sm-4">
+							<div class="col-2">
+								<label for="portInput" class="col-form-label col-form-label-sm">Port</label>
+							</div>
+							<div class="col-4">
 								<input type="text" class="form-control form-control-sm" id="portInput"
 									placeholder="Port">
 							</div>
-							<div class="col-sm-2">
-								<label for="sslInput" class="form-check-label">SSL</label>
+							<div class="col-2">
+								<label for="sslInput" class="col-form-label col-form-label-sm">SSL</label>
 							</div>
-							<div class="col-sm-2">
-								<input type="checkbox" class="form-check-input" id="sslInput" onclick="changeSSL()">
+							<div class="col-1">
+								<input type="checkbox" class="form-check-input form-control-sm" id="sslInput"
+									onclick="changeSSL()">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -229,16 +236,23 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Received Error</label>
+							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Error</label>
 							<div class="col-sm-8">
 								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
 									id="values" placeholder="waiting..." rows="3"></textarea>
 							</div>
 						</div>
-						<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect to
-							Broker</button>
-						<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
-							Connection</button>
+						<div class="row text-center">
+							<div class="col">
+								<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect
+									to
+									Broker</button>
+							</div>
+							<div class="col">
+								<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
+									Connection</button>
+							</div>
+						</div>
 						<script>
 							document.getElementById("hostInput").value = host;
 							document.getElementById("portInput").value = port;
