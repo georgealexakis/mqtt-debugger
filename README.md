@@ -1,6 +1,6 @@
 # MQTT Debugger
 
- MQTT Debugger is a single HTML page tool for debugging of [IoT Agent MQTT Application](https://georgealexakis.github.io/iot-agent/) connection.
+ MQTT Debugger is a single HTML page tool for debugging of [IoT Agent Application](https://georgealexakis.github.io/iot-agent/) MQTT connection.
 
 ## Technologies
 
