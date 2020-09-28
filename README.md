@@ -10,7 +10,7 @@
 
 ## Demo
 
-[MQTT Debugger](https://georgealexakis.github.io/iot-agent/debugger.html) (Previous version).
+[MQTT Debugger](https://georgealexakis.github.io/iot-agent/debugger.html).
 
 ## License
 
