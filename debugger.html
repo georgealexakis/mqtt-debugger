@@ -17,11 +17,11 @@
 		google.charts.setOnLoadCallback(initChart);
 		var mqtt;
 		var reconnectTimeout = 2000;
-		var host = "broker.hivemq.com"
-		var port = 8000;
-		var ssl = false;
-		var publishTopic = "$1-IoT-Agent-1$";
-		var subscribeTopic = "$2-IoT-Agent-2$";
+		var host = "mqtt.eclipse.org"
+		var port = 443;
+		var ssl = true;
+		var subscribeTopic = "$1-IoT-Agent-1$";
+		var publishTopic = "$2-IoT-Agent-2$";
 		var temp = new Array();
 		var options = {
 			title: 'Real Time Error Codes',
@@ -199,7 +199,7 @@
 		<nav class="navbar navbar-light bg-light">
 			<a class="navbar-brand" href="#">
 				<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
-					class="d-inline-block align-top" alt="">
+					class="d-inline-block align-top" alt="Logo">
 				MQTT Debugger - IoT Agent Live State Codes
 			</a>
 		</nav>
@@ -276,6 +276,7 @@
 							document.getElementById("portInput").value = port;
 							document.getElementById("subscribeTopic").value = subscribeTopic;
 							document.getElementById("publishTopic").value = publishTopic;
+							setSSL();
 						</script>
 					</form>
 				</div>
@@ -290,23 +291,23 @@
 						<tbody>
 							<tr>
 								<th scope="row">01</th>
-								<td>T&H Microcontroller Boot OK</td>
+								<td><small>T&H Microcontroller Boot OK</small></td>
 							</tr>
 							<tr>
 								<th scope="row">02</th>
-								<td>DHT Error</td>
+								<td><small>DHT Error</small></td>
 							</tr>
 							<tr>
 								<th scope="row">03</th>
-								<td>Update Temperature Error</td>
+								<td><small>Update Temperature Error</small></td>
 							</tr>
 							<tr>
 								<th scope="row">04</th>
-								<td>Update Humidity Error</td>
+								<td><small>Update Humidity Error</small></td>
 							</tr>
 							<tr>
 								<th scope="row">11</th>
-								<td>Lights Microcontroller Boot OK</td>
+								<td><small>Lights Microcontroller Boot OK</small></td>
 							</tr>
 						</tbody>
 					</table>
@@ -314,12 +315,13 @@
 				<div class="col-sm">
 					<h5>Useful Links</h5>
 					<a class="btn btn-secondary btn-sm"
-						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button">Free
+						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button"
+						target="_blank">Free
 						MQTT Brokers</a>
-					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/"
-						role="button">IoT Agent</a>
+					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/" role="button"
+						target="_blank">IoT Agent</a>
 					<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
-						role="button">Git Repository</a>
+						role="button" target="_blank">Git Repository</a>
 					<hr>
 					<div class="form-group">
 						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
