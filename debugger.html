@@ -8,6 +8,172 @@
 	<link rel="icon" type="image/png" href="https://georgealexakis.github.io/iot-agent/assets/favicon.png">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<style>
+		.form-group {
+			margin-bottom: 0.1rem !important;
+		}
+
+		.my-footer {
+			background-color: lightgray !important;
+		}
+
+		nav {
+			margin-bottom: 1rem;
+		}
+
+		.form-check-input {
+			margin-top: 0 !important;
+		}
+	</style>
+</head>
+
+<body>
+	<main role="main" class="flex-shrink-0">
+		<nav class="navbar navbar-light bg-light">
+			<a class="navbar-brand" href="#">
+				<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
+					class="d-inline-block align-top" alt="Logo">
+				MQTT Debugger - IoT Agent Live State Codes
+			</a>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm">
+					<form>
+						<div class="form-group row">
+							<label for="hostInput" class="col-sm-2 col-form-label col-form-label-sm">Host</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control form-control-sm" id="hostInput"
+									placeholder="MQTT over WebSockets">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-2">
+								<label for="portInput" class="col-form-label col-form-label-sm">Port</label>
+							</div>
+							<div class="col-4">
+								<input type="text" class="form-control form-control-sm" id="portInput"
+									placeholder="Port">
+							</div>
+							<div class="col-2">
+								<label for="sslInput" class="col-form-label col-form-label-sm">SSL</label>
+							</div>
+							<div class="col-1">
+								<input type="checkbox" class="form-check-input form-control-sm" id="sslInput"
+									onclick="changeSSL()">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="subscribeTopic" class="col-sm-4 col-form-label col-form-label-sm">Subscribe
+								Topic</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control form-control-sm" id="subscribeTopic"
+									placeholder="Subscribe Topic">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="subscribeTopic" class="col-sm-4 col-form-label col-form-label-sm">Publish
+								Topic</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control form-control-sm" id="publishTopic"
+									placeholder="Publish Topic">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="console" class="col-sm-4 col-form-label col-form-label-sm">Status</label>
+							<div class="col-sm-8">
+								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
+									id="console" placeholder="waiting..." rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Error</label>
+							<div class="col-sm-8">
+								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
+									id="values" placeholder="waiting..." rows="3"></textarea>
+							</div>
+						</div>
+						<div class="row text-center">
+							<div class="col">
+								<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect
+									to
+									Broker</button>
+							</div>
+							<div class="col">
+								<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
+									Connection</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-sm">
+					<table class="table table-bordered table-sm">
+						<thead>
+							<tr>
+								<th scope="col">Code</th>
+								<th scope="col">Error</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">01</th>
+								<td><small>T&H Microcontroller Boot OK</small></td>
+							</tr>
+							<tr>
+								<th scope="row">02</th>
+								<td><small>DHT Error</small></td>
+							</tr>
+							<tr>
+								<th scope="row">03</th>
+								<td><small>Update Temperature Error</small></td>
+							</tr>
+							<tr>
+								<th scope="row">04</th>
+								<td><small>Update Humidity Error</small></td>
+							</tr>
+							<tr>
+								<th scope="row">11</th>
+								<td><small>Lights Microcontroller Boot OK</small></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-sm">
+					<h5>Useful Links</h5>
+					<a class="btn btn-secondary btn-sm"
+						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button"
+						target="_blank">Free
+						MQTT Brokers</a>
+					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/" role="button"
+						target="_blank">IoT Agent</a>
+					<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
+						role="button" target="_blank">Git Repository</a>
+					<a class="btn btn-secondary btn-sm"
+						href="https://georgealexakis.github.io/iot-agent/microcontrollers.zip" role="button"
+						target="_blank">Microcontrollers Code</a>
+					<hr>
+					<div class="form-group">
+						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
+							topic</label>
+						<input type="text" class="form-control form-control-sm" id="message" placeholder="Message">
+					</div>
+					<button type="button" class="btn btn-secondary btn-sm" onclick="publishMessage()">Send
+						Message</button>
+					<button type="button" class="btn btn-secondary btn-sm" onclick="refresh()">Refresh Data</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm">
+					<div id="error-chart" style="height: 500px"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="footer mt-auto py-3 my-footer">
+		<div class="container">
+			<span class="text-muted">MQTT Debugger - IoT Agent Live State Codes</span>
+		</div>
+	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
 		type="text/javascript"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -27,6 +193,12 @@
 			title: 'Real Time Error Codes',
 			vAxis: { minValue: 01 }
 		};
+		// Display values
+		document.getElementById("hostInput").value = host;
+		document.getElementById("portInput").value = port;
+		document.getElementById("subscribeTopic").value = subscribeTopic;
+		document.getElementById("publishTopic").value = publishTopic;
+		setSSL();
 		// On reseize
 		window.onresize = redrawChart;
 		function redrawChart() {
@@ -175,179 +347,6 @@
 			location.reload();
 		}
 	</script>
-	<style>
-		.form-group {
-			margin-bottom: 0.1rem !important;
-		}
-
-		.my-footer {
-			background-color: lightgray !important;
-		}
-
-		nav {
-			margin-bottom: 1rem;
-		}
-
-		.form-check-input {
-			margin-top: 0 !important;
-		}
-	</style>
-</head>
-
-<body>
-	<main role="main" class="flex-shrink-0">
-		<nav class="navbar navbar-light bg-light">
-			<a class="navbar-brand" href="#">
-				<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
-					class="d-inline-block align-top" alt="Logo">
-				MQTT Debugger - IoT Agent Live State Codes
-			</a>
-		</nav>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm">
-					<form>
-						<div class="form-group row">
-							<label for="hostInput" class="col-sm-2 col-form-label col-form-label-sm">Host</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control form-control-sm" id="hostInput"
-									placeholder="MQTT over WebSockets">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-2">
-								<label for="portInput" class="col-form-label col-form-label-sm">Port</label>
-							</div>
-							<div class="col-4">
-								<input type="text" class="form-control form-control-sm" id="portInput"
-									placeholder="Port">
-							</div>
-							<div class="col-2">
-								<label for="sslInput" class="col-form-label col-form-label-sm">SSL</label>
-							</div>
-							<div class="col-1">
-								<input type="checkbox" class="form-check-input form-control-sm" id="sslInput"
-									onclick="changeSSL()">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="subscribeTopic" class="col-sm-4 col-form-label col-form-label-sm">Subscribe
-								Topic</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control form-control-sm" id="subscribeTopic"
-									placeholder="Subscribe Topic">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="subscribeTopic" class="col-sm-4 col-form-label col-form-label-sm">Publish
-								Topic</label>
-							<div class="col-sm-8">
-								<input type="text" class="form-control form-control-sm" id="publishTopic"
-									placeholder="Publish Topic">
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="console" class="col-sm-4 col-form-label col-form-label-sm">Status</label>
-							<div class="col-sm-8">
-								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
-									id="console" placeholder="waiting..." rows="3"></textarea>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Error</label>
-							<div class="col-sm-8">
-								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
-									id="values" placeholder="waiting..." rows="3"></textarea>
-							</div>
-						</div>
-						<div class="row text-center">
-							<div class="col">
-								<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect
-									to
-									Broker</button>
-							</div>
-							<div class="col">
-								<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
-									Connection</button>
-							</div>
-						</div>
-						<script>
-							document.getElementById("hostInput").value = host;
-							document.getElementById("portInput").value = port;
-							document.getElementById("subscribeTopic").value = subscribeTopic;
-							document.getElementById("publishTopic").value = publishTopic;
-							setSSL();
-						</script>
-					</form>
-				</div>
-				<div class="col-sm">
-					<table class="table table-bordered table-sm">
-						<thead>
-							<tr>
-								<th scope="col">Code</th>
-								<th scope="col">Error</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">01</th>
-								<td><small>T&H Microcontroller Boot OK</small></td>
-							</tr>
-							<tr>
-								<th scope="row">02</th>
-								<td><small>DHT Error</small></td>
-							</tr>
-							<tr>
-								<th scope="row">03</th>
-								<td><small>Update Temperature Error</small></td>
-							</tr>
-							<tr>
-								<th scope="row">04</th>
-								<td><small>Update Humidity Error</small></td>
-							</tr>
-							<tr>
-								<th scope="row">11</th>
-								<td><small>Lights Microcontroller Boot OK</small></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-sm">
-					<h5>Useful Links</h5>
-					<a class="btn btn-secondary btn-sm"
-						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button"
-						target="_blank">Free
-						MQTT Brokers</a>
-					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/" role="button"
-						target="_blank">IoT Agent</a>
-					<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
-						role="button" target="_blank">Git Repository</a>
-					<a class="btn btn-secondary btn-sm"
-						href="https://georgealexakis.github.io/iot-agent/microcontrollers.zip" role="button"
-						target="_blank">Microcontrollers Code</a>
-					<hr>
-					<div class="form-group">
-						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
-							topic</label>
-						<input type="text" class="form-control form-control-sm" id="message" placeholder="Message">
-					</div>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="publishMessage()">Send
-						Message</button>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="refresh()">Refresh Data</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm">
-					<div id="error-chart" style="height: 500px"></div>
-				</div>
-			</div>
-		</div>
-	</main>
-	<footer class="footer mt-auto py-3 my-footer">
-		<div class="container">
-			<span class="text-muted">MQTT Debugger - IoT Agent Live State Codes</span>
-		</div>
-	</footer>
 </body>
 
 </html>
