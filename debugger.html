@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>MQTT Debugger - IoT Agent Live State Codes</title>
 	<link rel="icon" type="image/png" href="https://georgealexakis.github.io/iot-agent/assets/favicon.png">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<style>
 		.form-group {
 			margin-bottom: 0.1rem !important;
@@ -28,13 +28,14 @@
 </head>
 
 <body>
-	<main role="main" class="flex-shrink-0">
+	<main role="main">
 		<nav class="navbar navbar-light bg-light">
-			<a class="navbar-brand" href="#">
-				<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
-					class="d-inline-block align-top" alt="Logo">
-				MQTT Debugger - IoT Agent Live State Codes
-			</a>
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
+					<img src="https://georgealexakis.github.io/iot-agent/assets/favicon.png" width="30" height="30"
+						class="d-inline-block align-top" alt="Logo">
+					MQTT Debugger - IoT Agent Live State Codes</a>
+			</div>
 		</nav>
 		<div class="container">
 			<div class="row">
@@ -83,23 +84,22 @@
 							<label for="console" class="col-sm-4 col-form-label col-form-label-sm">Status</label>
 							<div class="col-sm-8">
 								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
-									id="console" placeholder="waiting..." rows="3"></textarea>
+									id="console" placeholder="waiting..." rows="1"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="values" class="col-sm-4 col-form-label col-form-label-sm">Error</label>
 							<div class="col-sm-8">
 								<textarea type="text" readonly class="form-control-plaintext form-control-sm"
-									id="values" placeholder="waiting..." rows="3"></textarea>
+									id="values" placeholder="waiting..." rows="1"></textarea>
 							</div>
 						</div>
 						<div class="row text-center">
-							<div class="col">
+							<div class="btn-group" role="group">
 								<button type="button" class="btn btn-secondary btn-sm" onclick="MQTTconnect()">Connect
 									to
 									Broker</button>
-							</div>
-							<div class="col">
+
 								<button type="button" class="btn btn-secondary btn-sm" onclick="reload()">Reload
 									Connection</button>
 							</div>
@@ -140,26 +140,33 @@
 				</div>
 				<div class="col-sm">
 					<h5>Useful Links</h5>
-					<a class="btn btn-secondary btn-sm"
-						href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button"
-						target="_blank">Free
-						MQTT Brokers</a>
-					<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/" role="button"
-						target="_blank">IoT Agent</a>
-					<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
-						role="button" target="_blank">Git Repository</a>
-					<a class="btn btn-secondary btn-sm"
-						href="https://georgealexakis.github.io/iot-agent/microcontrollers.zip" role="button"
-						target="_blank">Microcontrollers Code</a>
+					<div class="btn-group" role="group">
+						<a class="btn btn-secondary btn-sm"
+							href="https://github.com/mqtt/mqtt.github.io/wiki/public_brokers" role="button"
+							target="_blank">Free
+							MQTT Brokers</a>
+						<a class="btn btn-secondary btn-sm" href="https://georgealexakis.github.io/iot-agent/"
+							role="button" target="_blank">IoT Agent</a>
+						<a class="btn btn-secondary btn-sm" href="https://github.com/georgealexakis/mqtt-debugger"
+							role="button" target="_blank">Git Repository</a>
+						<a class="btn btn-secondary btn-sm"
+							href="https://georgealexakis.github.io/iot-agent/microcontrollers.zip" role="button"
+							target="_blank">Microcontrollers Code</a>
+					</div>
 					<hr>
 					<div class="form-group">
 						<label for="message" class="col-form-label col-form-label-sm">Send message to publish
 							topic</label>
 						<input type="text" class="form-control form-control-sm" id="message" placeholder="Message">
 					</div>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="publishMessage()">Send
-						Message</button>
-					<button type="button" class="btn btn-secondary btn-sm" onclick="refresh()">Refresh Data</button>
+					<div class="row text-center">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-secondary btn-sm" onclick="publishMessage()">Send
+								Message</button>
+							<button type="button" class="btn btn-secondary btn-sm" onclick="refresh()">Refresh
+								Data</button>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -174,6 +181,9 @@
 			<span class="text-muted">MQTT Debugger - IoT Agent Live State Codes</span>
 		</div>
 	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+		crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
 		type="text/javascript"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -183,21 +193,21 @@
 		google.charts.setOnLoadCallback(initChart);
 		var mqtt;
 		var reconnectTimeout = 2000;
-		var host = "broker.emqx.io"
+		var host = 'broker.emqx.io';
 		var port = 8084;
 		var ssl = true;
-		var subscribeTopic = "$1-IoT-Agent-1$";
-		var publishTopic = "$2-IoT-Agent-2$";
-		var temp = new Array();
+		var subscribeTopic = '$1-IoT-Agent-1$';
+		var publishTopic = '$2-IoT-Agent-2$';
+		var temp = [];
 		var options = {
 			title: 'Real Time Error Codes',
 			vAxis: { minValue: 01 }
 		};
 		// Display values
-		document.getElementById("hostInput").value = host;
-		document.getElementById("portInput").value = port;
-		document.getElementById("subscribeTopic").value = subscribeTopic;
-		document.getElementById("publishTopic").value = publishTopic;
+		document.getElementById('hostInput').value = host;
+		document.getElementById('portInput').value = port;
+		document.getElementById('subscribeTopic').value = subscribeTopic;
+		document.getElementById('publishTopic').value = publishTopic;
 		setSSL();
 		// On reseize
 		window.onresize = redrawChart;
@@ -219,7 +229,7 @@
 		}
 		// Change SSL value
 		function changeSSL() {
-			var checkBox = document.getElementById("sslInput");
+			var checkBox = document.getElementById('sslInput');
 			if (checkBox.checked == true) {
 				ssl = true;
 			} else {
@@ -229,24 +239,24 @@
 		// Update checkbox of SSL value
 		function setSSL() {
 			if (ssl == false) {
-				document.getElementById("sslInput").checked = false;
+				document.getElementById('sslInput').checked = false;
 			} else {
-				document.getElementById("sslInput").checked = true;
+				document.getElementById('sslInput').checked = true;
 			}
 		}
 		// MQTT connecion on failure
 		function onFailure(message) {
-			host = document.getElementById("hostInput").value;
-			var connection = "Connection Attempt to Host " + host + "Failed.";
-			document.getElementById("console").innerHTML = connection;
+			host = document.getElementById('hostInput').value;
+			var connection = 'Connection Attempt to Host ' + host + 'Failed.';
+			document.getElementById('console').innerHTML = connection;
 			setTimeout(MQTTconnect, reconnectTimeout);
 		}
 		// MQTT connecion on message arrived
 		function onMessageArrived(msg) {
 			var date = new Date();
-			var receivedMessage = msg.payloadString + " at " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+			var receivedMessage = msg.payloadString + ' at ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 			temp.push({ time: date, error: Number(msg.payloadString) });
-			document.getElementById("values").value = receivedMessage;
+			document.getElementById('values').value = receivedMessage;
 			temp = arrayCleaner(temp);
 			console.log(temp);
 			var chartData = [
@@ -266,25 +276,25 @@
 		}
 		// MQTT connecion on connect
 		function onConnect() {
-			var subscribeTopic = document.getElementById("subscribeTopic").value;
-			document.getElementById("console").value = "Connected.";
+			var subscribeTopic = document.getElementById('subscribeTopic').value;
+			document.getElementById('console').value = 'Connected.';
 			mqtt.subscribe(subscribeTopic);
 		}
 		// MQTT connecion on publish message
 		function publishMessage() {
-			var publishTopic = document.getElementById("publishTopic").value;
-			var publishMessage = document.getElementById("message").value;
+			var publishTopic = document.getElementById('publishTopic').value;
+			var publishMessage = document.getElementById('message').value;
 			message = new Paho.MQTT.Message(publishMessage);
 			message.destinationName = publishTopic;
 			mqtt.send(message);
 		}
 		// MQTT initialize connection
 		function MQTTconnect() {
-			host = document.getElementById("hostInput").value;
-			port = document.getElementById("portInput").value;
-			var connection = "Connecting to " + host + " " + port + ".";
-			document.getElementById("console").value = connection;
-			mqtt = new Paho.MQTT.Client(host.trim(), parseInt(port.trim()), "IoT-Agent-Debugger");
+			host = document.getElementById('hostInput').value;
+			port = document.getElementById('portInput').value;
+			var connection = 'Connecting to ' + host + ' ' + port + '.';
+			document.getElementById('console').value = connection;
+			mqtt = new Paho.MQTT.Client(host.trim(), parseInt(port.trim()), 'IoT-Agent-Debugger');
 			var options = {
 				useSSL: ssl,
 				timeout: 3,
